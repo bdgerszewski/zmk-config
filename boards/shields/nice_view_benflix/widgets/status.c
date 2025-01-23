@@ -35,7 +35,7 @@ static void draw_top(lv_obj_t *widget, lv_color_t cbuf[], const struct status_st
     lv_obj_t *canvas = lv_obj_get_child(widget, 0);
 
     lv_draw_label_dsc_t label_dsc;
-    init_label_dsc(&label_dsc, LVGL_FOREGROUND, &lv_font_montserrat_16, LV_TEXT_ALIGN_RIGHT);
+    init_label_dsc(&label_dsc, LVGL_FOREGROUND, &lv_font_montserrat_18, LV_TEXT_ALIGN_RIGHT);
     lv_draw_rect_dsc_t rect_black_dsc;
     init_rect_dsc(&rect_black_dsc, LVGL_BACKGROUND);
 
@@ -43,17 +43,19 @@ static void draw_top(lv_obj_t *widget, lv_color_t cbuf[], const struct status_st
     lv_canvas_draw_rect(canvas, 0, 0, CANVAS_SIZE, CANVAS_SIZE, &rect_black_dsc);
 
     // Draw battery
-    draw_battery(canvas, state);
+    // Need to fix this, only works with 12 (or maybe below)
+    // Larger fonts overflow. 14 is close, probably works for non-100%. Could just keep it at 2 digits??
+    draw_battery_sized(canvas, state, &lv_font_montserrat_14);
 
     // Draw output status
     lv_canvas_draw_text(canvas, 0, 0, CANVAS_SIZE, &label_dsc,
                         state->connected ? LV_SYMBOL_BLUETOOTH : LV_SYMBOL_CLOSE);
     
     lv_draw_label_dsc_t label_dsc_center;
-    init_label_dsc(&label_dsc_center, LVGL_FOREGROUND, &lv_font_montserrat_20,
+    init_label_dsc(&label_dsc_center, LVGL_FOREGROUND, &lv_font_montserrat_28,
                    LV_TEXT_ALIGN_CENTER);
     char name[] = "BEN";
-    lv_canvas_draw_text(canvas, 0, 16, CANVAS_SIZE, &label_dsc_center, name);
+    lv_canvas_draw_text(canvas, 0, 28, CANVAS_SIZE, &label_dsc_center, name);
 
     // Rotate canvas
     rotate_canvas(canvas, cbuf);
