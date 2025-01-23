@@ -59,34 +59,25 @@ void rotate_canvas_wip(lv_obj_t *canvas, lv_color_t *cbuf) {
     // Free the temporary buffer
     free(cbuf_tmp);
 }
-
 void draw_battery(lv_obj_t *canvas, const struct status_state *state) {
+    draw_battery_sized(canvas, state, &lv_font_montserrat_12);
+}
+
+void draw_battery_sized(lv_obj_t *canvas, const struct status_state *state, const lv_font_t *font) {
     lv_draw_rect_dsc_t rect_black_dsc;
     init_rect_dsc(&rect_black_dsc, LVGL_BACKGROUND);
     lv_draw_rect_dsc_t rect_white_dsc;
     init_rect_dsc(&rect_white_dsc, LVGL_FOREGROUND);
 
-    // Removed, this draws a battery bar
-    // lv_canvas_draw_rect(canvas, 0, 2, 29, 12, &rect_white_dsc);
-    // lv_canvas_draw_rect(canvas, 1, 3, 27, 10, &rect_black_dsc);
-    // lv_canvas_draw_rect(canvas, 2, 4, (state->battery + 2) / 4, 8, &rect_white_dsc);
-    // lv_canvas_draw_rect(canvas, 30, 5, 3, 6, &rect_white_dsc);
-    // lv_canvas_draw_rect(canvas, 31, 6, 1, 4, &rect_black_dsc);
-
-    // Draw a battery outline if you want
-    // lv_canvas_draw_rect(canvas, 0, 2, 29, 12, &rect_white_dsc);
-    // lv_canvas_draw_rect(canvas, 1, 3, 27, 10, &rect_black_dsc);
-    // lv_canvas_draw_rect(canvas, 30, 5, 3, 6, &rect_white_dsc);
-    // lv_canvas_draw_rect(canvas, 31, 6, 1, 4, &rect_black_dsc);
-
     // Prepare to draw the percentage text
     char buf[10];
-    snprintf(buf, sizeof(buf), "%3u%%", state->battery);
+    uint8_t adjusted = state->battery == 100 ? 99 : state->battery;
+    snprintf(buf, sizeof(buf), "%2u%%", adjusted);
 
     lv_draw_label_dsc_t label_dsc;
     lv_draw_label_dsc_init(&label_dsc);
     label_dsc.color = rect_white_dsc.bg_color; // Set the text color
-    label_dsc.font = &lv_font_montserrat_12;   // Set the font
+    label_dsc.font = font;   // Set the font
 
     // Calculate position to center the text within the battery outline
     lv_point_t text_size;
