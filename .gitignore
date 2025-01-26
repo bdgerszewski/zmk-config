@@ -84,3 +84,13 @@ __pycache__
 # Rust
 target/
 **/*.rs.bk
+
+# Build modules / artifacts
+zephyr/
+nice-view-gem/
+modules/
+zmk-dongle-display/
+zmk-nice-oled/
+zmk-oled-adapter/
+zmk-dongle-display-view/
+.west/
