@@ -44,6 +44,8 @@
             label = "MOUSE_KEYS";
             #binding-cells = <0>;
             bindings = <&mo 1>, <&mo 4>;
+
+            tapping-term-ms = <333>;
         };
     };
 
