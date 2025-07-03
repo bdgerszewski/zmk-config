@@ -4,6 +4,8 @@ START_DIR=$(pwd)
 cd /home/ben/repos/zmk-config
 # source ~/zephyrproject/.venv/bin/activate
 
+west update
+
 west build -s zmk/app -d /home/ben/zmk-dongle-build-mctech-aluminum/left -b nice_nano_v2 -p always --   -DZMK_CONFIG=/home/ben/repos/zmk-config/config -DSHIELD="corne_left_peripheral nice_view_adapter nice_view_benflix" &
 west build -s zmk/app -d /home/ben/zmk-dongle-build-mctech-aluminum/right -b nice_nano_v2 -p always --  -DZMK_CONFIG=/home/ben/repos/zmk-config/config -DSHIELD="corne_right nice_view_adapter nice_view_benflix" &
 west build -s zmk/app -d /home/ben/zmk-dongle-build-mctech-aluminum/dongle -b nice_nano_v2 -p always -- -DZMK_CONFIG=/home/ben/repos/zmk-config/config -DSHIELD="corne_dongle_pro_micro" &
