@@ -1,7 +1,8 @@
 manifest:
   remotes:
     - name: zmkfirmware
-      url-base: https://github.com/bdgerszewski
+      url-base: https://github.com/zmkfirmware
+      # url-base: https://github.com/bdgerszewski
     # nice_view_gem
     - name: m165437
       url-base: https://github.com/M165437
@@ -14,7 +15,7 @@ manifest:
   projects:
     - name: zmk
       remote: zmkfirmware
-      revision: merge
+      revision: main
       import: app/west.yml
     # nice_view_gem
     - name: nice-view-gem
