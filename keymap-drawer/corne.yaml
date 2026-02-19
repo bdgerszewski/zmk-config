@@ -85,7 +85,7 @@ layers:
   - ␣
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - $$mdi:apple-keyboard-option$$
+  - {t: ▽, type: trans}
   raise:
   - ↹
   - '!'
@@ -128,7 +128,7 @@ layers:
   - ␣
   - ⏎
   - {type: held}
-  - $$mdi:apple-keyboard-option$$
+  - {t: ▽, type: trans}
   '3':
   - {t: ▽, type: trans}
   - F1
