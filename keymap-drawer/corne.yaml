@@ -42,7 +42,7 @@ layers:
   - ␣
   - {t: RETURN, h: RSHIFT}
   - raise
-  - $$mdi:apple-keyboard-option$$
+  - '&ralt_tap'
   lower:
   - ↹
   - '1'
